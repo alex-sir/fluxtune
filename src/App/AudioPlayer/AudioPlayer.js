@@ -1,33 +1,49 @@
 import React, { Component } from 'react';
-import WaveSurfer from 'wavesurfer.js';
-import MrSaxobeat from './preset-music/mr-saxobeat.flac';
+import Waveform from './Waveform/Waveform';
+import PlayPauseAudio from './PlayPauseAudio/PlayPauseAudio';
+import './AudioPlayer.css';
 
 export default class AudioPlayer extends Component {
-    componentDidMount = () => {
-        const wavesurfer = WaveSurfer.create({
-            container: '#waveform',
-            waveColor: 'violet',
-            progressColor: 'purple'
+    constructor(props) {
+        super(props);
+        this.state = {
+            isPlaying: false,
+            wavesurfer: {
+                container: '#waveform',
+                waveColor: 'violet',
+                progressColor: 'purple',
+                hideScrollbar: true
+            },
+            currentWave: null
+        };
+    }
+
+    setNewWave = wave => {
+        this.setState({
+            currentWave: wave
         });
+    }
 
-        wavesurfer.load(MrSaxobeat);
-
-        document.querySelector('#playMusic').addEventListener('click', e => {
-            if (wavesurfer.isPlaying()) {
-                wavesurfer.pause();
-                e.target.textContent = 'Play';
-            } else {
-                wavesurfer.play();
-                e.target.textContent = 'Pause';
-            }
+    setPlayPauseStatus = () => {
+        this.setState({
+            isPlaying: !this.state.isPlaying
         });
     }
 
     render() {
+        const { isPlaying, wavesurfer, currentWave } = this.state;
+
         return (
-            <div>
-                <button id="playMusic">Play</button>
-                <div id="waveform"></div>
+            <div id="audio-player">
+                <PlayPauseAudio
+                    isPlaying={isPlaying}
+                    setPlayPauseStatus={this.setPlayPauseStatus}
+                    currentWave={currentWave}
+                />
+                <Waveform
+                    wavesurfer={wavesurfer}
+                    setNewWave={this.setNewWave}
+                />
             </div>
         );
     }
