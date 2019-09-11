@@ -1,0 +1,19 @@
+nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+h1 {
+    margin: 0;
+    font-size: 2em;
+}
+
+.icon-list {
+    display: flex;
+}
+
+.icon {
+    font-size: 1.5em;
+    padding: 0 10px;
+}
