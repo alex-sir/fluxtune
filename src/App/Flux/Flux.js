@@ -1,21 +1,14 @@
 import React, { Component } from 'react';
-import TimeTriangle from './TimeTriangle/TimeTriangle';
+import FluxTriangles from './FluxTriangles/FluxTriangles';
+import ManipulationMultiplier from './ManipulationMultiplier/ManipulationMultiplier';
 import './Flux.css';
 
 export default class Flux extends Component {
     render() {
         return (
-            <div className="time-flux">
-                <TimeTriangle />
-                <TimeTriangle />
-                <TimeTriangle />
-                <TimeTriangle />
-                <TimeTriangle />
-                <TimeTriangle />
-                <TimeTriangle />
-                <TimeTriangle />
-                <TimeTriangle />
-                <TimeTriangle />
+            <div className="flux">
+                <FluxTriangles />
+                <ManipulationMultiplier />
             </div>
         );
     }
