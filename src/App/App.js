@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Nav from './Nav/Nav';
 import Flux from './Flux/Flux';
 import AudioPlayer from './AudioPlayer/AudioPlayer';
-import ControlPanel from "./ControlPanel/ControlPanel";
+import ControlPanel from './ControlPanel/ControlPanel';
 import './App.css';
 
 export default class App extends Component {
@@ -15,7 +15,8 @@ export default class App extends Component {
                 waveColor: 'violet',
                 progressColor: 'purple',
                 hideScrollbar: true,
-                audioRate: 1
+                audioRate: 1,
+                mediaControls: true
             },
             currentWave: null
         };
@@ -44,9 +45,15 @@ export default class App extends Component {
         });
     }
 
+    setAudioSource = file => {
+        const { currentWave } = this.state;
+
+        currentWave.load(file);
+    }
+
     render() {
         const { isPlaying, wavesurfer, currentWave } = this.state;
-        const { setNewWave, setPlayPauseStatus, setAudioRate } = this;
+        const { setNewWave, setPlayPauseStatus, setAudioRate, setAudioSource } = this;
         const { audioRate } = wavesurfer;
 
         return (
@@ -64,6 +71,7 @@ export default class App extends Component {
                     currentWave={currentWave}
                     setNewWave={setNewWave}
                     setPlayPauseStatus={setPlayPauseStatus}
+                    setAudioSource={setAudioSource}
                 />
             </div>
         );

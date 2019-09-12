@@ -1,5 +1,6 @@
 #audio-player {
     display: flex;
+    flex-direction: column;
     position: fixed;
     bottom: 60px;
     right: 0;

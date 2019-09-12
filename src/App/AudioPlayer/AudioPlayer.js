@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Waveform from './Waveform/Waveform';
 import PlayPauseAudio from './PlayPauseAudio/PlayPauseAudio';
+import FileUpload from './FileUpload/FileUpload';
 import './AudioPlayer.css';
 
 export default class AudioPlayer extends Component {
@@ -10,20 +11,28 @@ export default class AudioPlayer extends Component {
             wavesurfer,
             currentWave,
             setNewWave,
-            setPlayPauseStatus
+            setPlayPauseStatus,
+            setAudioSource
         } = this.props;
 
         return (
             <div id="audio-player">
-                <PlayPauseAudio
-                    isPlaying={isPlaying}
-                    setPlayPauseStatus={setPlayPauseStatus}
-                    currentWave={currentWave}
-                />
-                <Waveform
-                    wavesurfer={wavesurfer}
-                    setNewWave={setNewWave}
-                />
+                <div>
+                    <PlayPauseAudio
+                        isPlaying={isPlaying}
+                        setPlayPauseStatus={setPlayPauseStatus}
+                        currentWave={currentWave}
+                    />
+                    <Waveform
+                        wavesurfer={wavesurfer}
+                        setNewWave={setNewWave}
+                    />
+                </div>
+                <div>
+                    <FileUpload
+                        setAudioSource={setAudioSource}
+                    />
+                </div>
             </div>
         );
     }
