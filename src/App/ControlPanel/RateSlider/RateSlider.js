@@ -8,16 +8,16 @@ const RateSlider = ({ audioRate, setAudioRate }) => {
 
     return (
         <div id="rate-slider-container">
-            <label>Speed
-                <input
-                    type="range"
-                    value={audioRate}
-                    min="0.1"
-                    max="2"
-                    step="0.1"
-                    onChange={changeAudioRate}
-                />
-            </label>
+            <label htmlFor="audio-rate-range">Speed</label>
+            <input
+                id="audio-rate-change"
+                type="range"
+                value={audioRate}
+                min="0.1"
+                max="2"
+                step="0.1"
+                onChange={changeAudioRate}
+            />
             <span className="audio-rate">{audioRate}x</span>
         </div>
     );

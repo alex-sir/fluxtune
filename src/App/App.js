@@ -10,6 +10,7 @@ export default class App extends Component {
         super(props);
         this.state = {
             isPlaying: false,
+            volume: 1,
             wavesurfer: {
                 container: '#waveform',
                 waveColor: 'violet',
@@ -51,9 +52,19 @@ export default class App extends Component {
         currentWave.load(file);
     }
 
+    setVolume = newVolume => {
+        const { currentWave } = this.state;
+        newVolume = parseFloat(newVolume);
+
+        currentWave.setVolume(newVolume);
+        this.setState({
+            volume: newVolume
+        });
+    }
+
     render() {
-        const { isPlaying, wavesurfer, currentWave } = this.state;
-        const { setNewWave, setPlayPauseStatus, setAudioRate, setAudioSource } = this;
+        const { isPlaying, volume, wavesurfer, currentWave } = this.state;
+        const { setNewWave, setPlayPauseStatus, setAudioRate, setAudioSource, setVolume } = this;
         const { audioRate } = wavesurfer;
 
         return (
@@ -67,11 +78,13 @@ export default class App extends Component {
                 />
                 <AudioPlayer
                     isPlaying={isPlaying}
+                    volume={volume}
                     wavesurfer={wavesurfer}
                     currentWave={currentWave}
                     setNewWave={setNewWave}
                     setPlayPauseStatus={setPlayPauseStatus}
                     setAudioSource={setAudioSource}
+                    setVolume={setVolume}
                 />
             </div>
         );
