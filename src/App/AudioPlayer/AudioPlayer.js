@@ -4,45 +4,25 @@ import PlayPauseAudio from './PlayPauseAudio/PlayPauseAudio';
 import './AudioPlayer.css';
 
 export default class AudioPlayer extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            isPlaying: false,
-            wavesurfer: {
-                container: '#waveform',
-                waveColor: 'violet',
-                progressColor: 'purple',
-                hideScrollbar: true
-            },
-            currentWave: null
-        };
-    }
-
-    setNewWave = wave => {
-        this.setState({
-            currentWave: wave
-        });
-    }
-
-    setPlayPauseStatus = () => {
-        this.setState({
-            isPlaying: !this.state.isPlaying
-        });
-    }
-
     render() {
-        const { isPlaying, wavesurfer, currentWave } = this.state;
+        const {
+            isPlaying,
+            wavesurfer,
+            currentWave,
+            setNewWave,
+            setPlayPauseStatus
+        } = this.props;
 
         return (
             <div id="audio-player">
                 <PlayPauseAudio
                     isPlaying={isPlaying}
-                    setPlayPauseStatus={this.setPlayPauseStatus}
+                    setPlayPauseStatus={setPlayPauseStatus}
                     currentWave={currentWave}
                 />
                 <Waveform
                     wavesurfer={wavesurfer}
-                    setNewWave={this.setNewWave}
+                    setNewWave={setNewWave}
                 />
             </div>
         );

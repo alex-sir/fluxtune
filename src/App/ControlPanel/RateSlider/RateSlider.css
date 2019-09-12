@@ -1,0 +1,9 @@
+#rate-slider-container {
+    display: flex;
+    align-items: center;
+    font-size: 1.5em;
+}
+
+.audio-rate {
+    padding: 10px;
+}

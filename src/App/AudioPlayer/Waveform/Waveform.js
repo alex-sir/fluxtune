@@ -10,14 +10,16 @@ export default class Waveform extends Component {
             container,
             waveColor,
             progressColor,
-            hideScrollbar
+            hideScrollbar,
+            audioRate
         } = wavesurfer;
 
         const wave = WaveSurfer.create({
             container,
             waveColor,
             progressColor,
-            hideScrollbar
+            hideScrollbar,
+            audioRate
         });
 
         wave.load(MrSaxobeat);

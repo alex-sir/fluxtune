@@ -6,7 +6,7 @@ export default class PlayPauseAudio extends Component {
         const playPauseBtn = e.target;
 
         setPlayPauseStatus();
-        playPauseBtn.textContent = isPlaying ? 'Play' : 'Pause';
+        playPauseBtn.textContent = (isPlaying ? 'Play' : 'Pause');
         currentWave.playPause();
     }
 
