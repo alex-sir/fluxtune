@@ -1,13 +1,17 @@
 import React from 'react';
 import './FileUpload.css';
 
-const FileUpload = ({ setAudioSource, setAudioName }) => {
+const FileUpload = ({ isPlaying, setPlayPauseStatus, setAudioSource, setAudioName }) => {
     const uploadAudioFile = e => {
         const filename = e.target.files[0].name;
         const cutFilename = filename.substr(0, filename.lastIndexOf('.')) || filename;
 
         setAudioName(cutFilename);
         setAudioSource(URL.createObjectURL(e.target.files[0]));
+
+        if (isPlaying) {
+            setPlayPauseStatus();
+        }
     }
 
     return (

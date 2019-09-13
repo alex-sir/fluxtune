@@ -21,6 +21,8 @@ export default class AudioControls extends Component {
         return (
             <div id="audio-controls">
                 <FileUpload
+                    isPlaying={isPlaying}
+                    setPlayPauseStatus={setPlayPauseStatus}
                     setAudioSource={setAudioSource}
                     setAudioName={setAudioName}
                 />

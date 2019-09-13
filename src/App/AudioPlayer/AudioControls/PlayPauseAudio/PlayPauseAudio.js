@@ -4,11 +4,9 @@ import './PlayPauseAudio.css';
 
 export default class PlayPauseAudio extends Component {
     playPause = e => {
-        const { isPlaying, setPlayPauseStatus, currentWave } = this.props;
-        const playPauseBtn = e.target;
+        const { setPlayPauseStatus, currentWave } = this.props;
 
         setPlayPauseStatus();
-        playPauseBtn.textContent = (isPlaying ? 'Play' : 'Pause');
         currentWave.playPause();
     }
 
@@ -17,13 +15,13 @@ export default class PlayPauseAudio extends Component {
         let playPause;
 
         if (!isPlaying) {
-            playPause = <MdPlayCircleOutline id="play-music" onClick={this.playPause} />;
+            playPause = <MdPlayCircleOutline id="play-pause-music" onClick={this.playPause} />;
         } else {
-            playPause = <MdPauseCircleOutline id="play-music" onClick={this.playPause} />;
+            playPause = <MdPauseCircleOutline id="play-pause-music" onClick={this.playPause} />;
         }
 
         return (
-            <div>
+            <div id="play-pause-container">
                 {playPause}
             </div>
         );

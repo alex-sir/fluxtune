@@ -1,13 +1,22 @@
 import React from 'react';
-import { MdVolumeUp, MdVolumeDown, MdVolumeMute, MdVolumeOff } from 'react-icons/md';
+import {
+    MdVolumeUp,
+    MdVolumeDown,
+    MdVolumeMute,
+    MdVolumeOff
+} from 'react-icons/md';
+import Slider from '@material-ui/core/Slider';
 import './Volume.css';
 
 const Volume = ({ volume, isMuted, setVolume, muteVolumeChange }) => {
-    const handleVolumeChange = e => {
-        setVolume(e.target.value);
+    const handleVolumeChange = (e, value) => {
+        const volumeValue = value / 100;
 
         if (isMuted) {
             muteVolumeChange();
+            setVolume(volumeValue);
+        } else {
+            setVolume(volumeValue);
         }
     }
 
@@ -30,15 +39,17 @@ const Volume = ({ volume, isMuted, setVolume, muteVolumeChange }) => {
     }
 
     return (
-        <div>
+        <div id="volume-container">
             {volumeIcon}
-            <input
-                id="volume"
-                type="range"
-                value={volume}
-                min="0"
-                max="1"
-                step="0.01"
+            <Slider
+                className="volume-slider"
+                defaultValue={100}
+                value={parseInt(volume * 100)}
+                aria-labelledby="volume-slider"
+                valueLabelDisplay="auto"
+                step={1}
+                min={0}
+                max={100}
                 onChange={handleVolumeChange}
             />
         </div>
