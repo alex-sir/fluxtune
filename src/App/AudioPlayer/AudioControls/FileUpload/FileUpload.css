@@ -1,0 +1,10 @@
+#audio-upload-label {
+    display: table;
+    background: transparent;
+    padding: 8px;
+    border: 1px solid #e8e8e8;
+}
+
+input[type="file"] {
+    display: none;
+}

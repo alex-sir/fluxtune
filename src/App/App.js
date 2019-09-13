@@ -11,6 +11,8 @@ export default class App extends Component {
         this.state = {
             isPlaying: false,
             volume: 1,
+            isMuted: false,
+            audioName: '',
             wavesurfer: {
                 container: '#waveform',
                 waveColor: 'violet',
@@ -62,9 +64,39 @@ export default class App extends Component {
         });
     }
 
+    setAudioName = fileName => {
+        this.setState({
+            audioName: fileName
+        });
+    }
+
+    muteVolumeChange = () => {
+        const { currentWave } = this.state;
+
+        currentWave.toggleMute();
+        this.setState({
+            isMuted: !this.state.isMuted
+        });
+    }
+
     render() {
-        const { isPlaying, volume, wavesurfer, currentWave } = this.state;
-        const { setNewWave, setPlayPauseStatus, setAudioRate, setAudioSource, setVolume } = this;
+        const {
+            isPlaying,
+            volume,
+            isMuted,
+            wavesurfer,
+            currentWave,
+            audioName
+        } = this.state;
+        const {
+            setNewWave,
+            setPlayPauseStatus,
+            setAudioRate,
+            setAudioSource,
+            setVolume,
+            setAudioName,
+            muteVolumeChange
+        } = this;
         const { audioRate } = wavesurfer;
 
         return (
@@ -79,12 +111,16 @@ export default class App extends Component {
                 <AudioPlayer
                     isPlaying={isPlaying}
                     volume={volume}
+                    isMuted={isMuted}
+                    audioName={audioName}
                     wavesurfer={wavesurfer}
                     currentWave={currentWave}
                     setNewWave={setNewWave}
                     setPlayPauseStatus={setPlayPauseStatus}
                     setAudioSource={setAudioSource}
                     setVolume={setVolume}
+                    setAudioName={setAudioName}
+                    muteVolumeChange={muteVolumeChange}
                 />
             </div>
         );

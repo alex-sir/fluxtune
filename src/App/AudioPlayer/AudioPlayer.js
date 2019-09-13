@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import Waveform from './Waveform/Waveform';
-import PlayPauseAudio from './PlayPauseAudio/PlayPauseAudio';
-import FileUpload from './FileUpload/FileUpload';
-import Volume from './Volume/Volume';
+import AudioControls from './AudioControls/AudioControls';
 import './AudioPlayer.css';
 
 export default class AudioPlayer extends Component {
@@ -10,16 +8,23 @@ export default class AudioPlayer extends Component {
         const {
             isPlaying,
             volume,
+            isMuted,
+            audioName,
             wavesurfer,
             currentWave,
             setNewWave,
             setPlayPauseStatus,
             setAudioSource,
-            setVolume
+            setVolume,
+            setAudioName,
+            muteVolumeChange
         } = this.props;
 
         return (
             <div id="audio-player">
+                <div>
+                    <p>{audioName}</p>
+                </div>
                 <div>
                     <Waveform
                         wavesurfer={wavesurfer}
@@ -27,17 +32,16 @@ export default class AudioPlayer extends Component {
                     />
                 </div>
                 <div id="wave-options">
-                    <PlayPauseAudio
+                    <AudioControls
                         isPlaying={isPlaying}
-                        setPlayPauseStatus={setPlayPauseStatus}
-                        currentWave={currentWave}
-                    />
-                    <FileUpload
-                        setAudioSource={setAudioSource}
-                    />
-                    <Volume
                         volume={volume}
+                        isMuted={isMuted}
+                        currentWave={currentWave}
+                        setPlayPauseStatus={setPlayPauseStatus}
+                        setAudioSource={setAudioSource}
                         setVolume={setVolume}
+                        setAudioName={setAudioName}
+                        muteVolumeChange={muteVolumeChange}
                     />
                 </div>
             </div>
