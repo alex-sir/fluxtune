@@ -3,6 +3,10 @@ import './FileUpload.css';
 
 const FileUpload = ({ isPlaying, setPlayPauseStatus, setAudioSource, setAudioName }) => {
     const uploadAudioFile = e => {
+        if (!e.target.value) {
+            return;
+        }
+
         const filename = e.target.files[0].name;
         const cutFilename = filename.substr(0, filename.lastIndexOf('.')) || filename;
 

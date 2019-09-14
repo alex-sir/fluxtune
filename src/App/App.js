@@ -13,13 +13,17 @@ export default class App extends Component {
             volume: 1,
             isMuted: false,
             audioName: '',
+            audioDuration: 0,
+            currentAudioTime: 0,
             wavesurfer: {
                 container: '#waveform',
+                minPxPerSec: 120,
+                scrollParent: true,
                 waveColor: 'violet',
                 progressColor: 'purple',
-                hideScrollbar: true,
+                cursorColor: '#e8e8e8',
                 audioRate: 1,
-                mediaControls: true
+                responsive: true
             },
             currentWave: null
         };
@@ -70,6 +74,26 @@ export default class App extends Component {
         });
     }
 
+    getCurrentAudioTime = () => {
+        const { currentWave } = this.state;
+
+        console.log(parseInt(currentWave.getCurrentTime()));
+    }
+
+    getAudioDuration = () => {
+        const { currentWave } = this.state;
+
+        console.log(`Duration: ${currentWave.getDuration()}`);
+    }
+
+    setAudioDuration = () => {
+        const { currentWave } = this.state;
+
+        this.setState({
+            audioDuration: currentWave.getDuration()
+        });
+    }
+
     muteVolumeChange = () => {
         const { currentWave } = this.state;
 
@@ -86,7 +110,9 @@ export default class App extends Component {
             isMuted,
             wavesurfer,
             currentWave,
-            audioName
+            audioName,
+            audioDuration,
+            currentAudioTime
         } = this.state;
         const {
             setNewWave,
@@ -95,6 +121,9 @@ export default class App extends Component {
             setAudioSource,
             setVolume,
             setAudioName,
+            getCurrentAudioTime,
+            getAudioDuration,
+            setAudioDuration,
             muteVolumeChange
         } = this;
         const { audioRate } = wavesurfer;
@@ -113,6 +142,8 @@ export default class App extends Component {
                     volume={volume}
                     isMuted={isMuted}
                     audioName={audioName}
+                    audioDuration={audioDuration}
+                    currentAudioTime={currentAudioTime}
                     wavesurfer={wavesurfer}
                     currentWave={currentWave}
                     setNewWave={setNewWave}
@@ -120,6 +151,9 @@ export default class App extends Component {
                     setAudioSource={setAudioSource}
                     setVolume={setVolume}
                     setAudioName={setAudioName}
+                    getCurrentAudioTime={getCurrentAudioTime}
+                    getAudioDuration={getAudioDuration}
+                    setAudioDuration={setAudioDuration}
                     muteVolumeChange={muteVolumeChange}
                 />
             </div>

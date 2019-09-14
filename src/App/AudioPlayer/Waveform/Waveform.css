@@ -1,3 +1,8 @@
+.waveform-container {
+    display: flex;
+    align-items: center;
+}
+
 #waveform {
     width: 80vw;
     padding: 20px;

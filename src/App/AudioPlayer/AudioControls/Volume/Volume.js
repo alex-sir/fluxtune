@@ -5,7 +5,7 @@ import {
     MdVolumeMute,
     MdVolumeOff
 } from 'react-icons/md';
-import Slider from '@material-ui/core/Slider';
+import VolumeSlider from './VolumeSlider';
 import './Volume.css';
 
 const Volume = ({ volume, isMuted, setVolume, muteVolumeChange }) => {
@@ -41,7 +41,7 @@ const Volume = ({ volume, isMuted, setVolume, muteVolumeChange }) => {
     return (
         <div id="volume-container">
             {volumeIcon}
-            <Slider
+            <VolumeSlider
                 className="volume-slider"
                 defaultValue={100}
                 value={parseInt(volume * 100)}
