@@ -24,7 +24,7 @@ export default class AudioPlayer extends Component {
             isMuted,
             audioName,
             audioDuration,
-            currentAudioTime,
+            elapsedAudioTime,
             wavesurfer,
             currentWave,
             setNewWave,
@@ -32,6 +32,7 @@ export default class AudioPlayer extends Component {
             setAudioSource,
             setVolume,
             setAudioName,
+            setCurrentAudioTime,
             getCurrentAudioTime,
             getAudioDuration,
             setAudioDuration,
@@ -50,7 +51,7 @@ export default class AudioPlayer extends Component {
                         currentWave={currentWave}
                         setNewWave={setNewWave}
                         audioDuration={audioDuration}
-                        currentAudioTime={currentAudioTime}
+                        elapsedAudioTime={elapsedAudioTime}
                         getCurrentAudioTime={getCurrentAudioTime}
                         getAudioDuration={getAudioDuration}
                         setAudioDuration={setAudioDuration}
@@ -63,11 +64,13 @@ export default class AudioPlayer extends Component {
                         isPlaying={isPlaying}
                         volume={volume}
                         isMuted={isMuted}
+                        getCurrentAudioTime={getCurrentAudioTime}
                         currentWave={currentWave}
                         setPlayPauseStatus={setPlayPauseStatus}
                         setAudioSource={setAudioSource}
                         setVolume={setVolume}
                         setAudioName={setAudioName}
+                        setCurrentAudioTime={setCurrentAudioTime}
                         muteVolumeChange={muteVolumeChange}
                         playPauseAudio={playPauseAudio}
                     />

@@ -14,6 +14,7 @@ const RateSlider = ({ audioRate, setAudioRate }) => {
                 type="range"
                 value={audioRate}
                 min="0.1"
+                // REM: Max audio rate that works with elapsed time display is around 6x
                 max="2"
                 step="0.1"
                 onChange={changeAudioRate}

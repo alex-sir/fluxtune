@@ -14,7 +14,7 @@ export default class App extends Component {
             isMuted: false,
             audioName: '',
             audioDuration: 0,
-            currentAudioTime: 0,
+            elapsedAudioTime: 0,
             wavesurfer: {
                 container: '#waveform',
                 minPxPerSec: 120,
@@ -77,7 +77,13 @@ export default class App extends Component {
     getCurrentAudioTime = () => {
         const { currentWave } = this.state;
 
-        console.log(parseInt(currentWave.getCurrentTime()));
+        return currentWave.getCurrentTime();
+    }
+
+    setCurrentAudioTime = currentTime => {
+        this.setState({
+            elapsedAudioTime: parseInt(currentTime)
+        });
     }
 
     getAudioDuration = () => {
@@ -90,7 +96,7 @@ export default class App extends Component {
         const { currentWave } = this.state;
 
         this.setState({
-            audioDuration: currentWave.getDuration()
+            audioDuration: parseInt(currentWave.getDuration())
         });
     }
 
@@ -112,7 +118,7 @@ export default class App extends Component {
             currentWave,
             audioName,
             audioDuration,
-            currentAudioTime
+            elapsedAudioTime
         } = this.state;
         const {
             setNewWave,
@@ -121,6 +127,7 @@ export default class App extends Component {
             setAudioSource,
             setVolume,
             setAudioName,
+            setCurrentAudioTime,
             getCurrentAudioTime,
             getAudioDuration,
             setAudioDuration,
@@ -143,7 +150,7 @@ export default class App extends Component {
                     isMuted={isMuted}
                     audioName={audioName}
                     audioDuration={audioDuration}
-                    currentAudioTime={currentAudioTime}
+                    elapsedAudioTime={elapsedAudioTime}
                     wavesurfer={wavesurfer}
                     currentWave={currentWave}
                     setNewWave={setNewWave}
@@ -151,6 +158,7 @@ export default class App extends Component {
                     setAudioSource={setAudioSource}
                     setVolume={setVolume}
                     setAudioName={setAudioName}
+                    setCurrentAudioTime={setCurrentAudioTime}
                     getCurrentAudioTime={getCurrentAudioTime}
                     getAudioDuration={getAudioDuration}
                     setAudioDuration={setAudioDuration}

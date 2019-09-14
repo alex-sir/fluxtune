@@ -3,11 +3,32 @@ import { MdPlayCircleOutline, MdPauseCircleOutline } from 'react-icons/md';
 import './PlayPauseAudio.css';
 
 export default class PlayPauseAudio extends Component {
-    handleKeyPress = e => {
-        const { playPauseAudio } = this.props;
+    handlePlayPauseAudio = () => {
+        const {
+            isPlaying,
+            playPauseAudio,
+            getCurrentAudioTime,
+            setCurrentAudioTime
+        } = this.props;
+        let audioTime;
 
+        playPauseAudio();
+
+        // FIXME: Interacting w/ waveform when play/pause has never been pressed doesn't update elapsed time
+        if (!isPlaying) {
+            audioTime = setInterval(() => {
+                const currentTime = getCurrentAudioTime();
+                setCurrentAudioTime(currentTime);
+                // TODO: Works, can improve performance by updating ms to as long as possible
+            }, 10);
+        } else {
+            clearInterval(audioTime);
+        }
+    }
+
+    handleKeyPress = e => {
         if (e.keyCode === 32) {
-            playPauseAudio();
+            this.handlePlayPauseAudio();
         }
     }
 
@@ -20,13 +41,13 @@ export default class PlayPauseAudio extends Component {
     }
 
     render() {
-        const { isPlaying, playPauseAudio } = this.props;
+        const { isPlaying } = this.props;
         let playPause;
 
         if (!isPlaying) {
-            playPause = <MdPlayCircleOutline id="play-pause-music" onClick={playPauseAudio} />;
+            playPause = <MdPlayCircleOutline id="play-pause-music" onClick={this.handlePlayPauseAudio} />;
         } else {
-            playPause = <MdPauseCircleOutline id="play-pause-music" onClick={playPauseAudio} />;
+            playPause = <MdPauseCircleOutline id="play-pause-music" onClick={this.handlePlayPauseAudio} />;
         }
 
         return (

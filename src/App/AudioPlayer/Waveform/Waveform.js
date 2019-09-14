@@ -10,8 +10,6 @@ export default class Waveform extends Component {
         const {
             wavesurfer,
             setNewWave,
-            getCurrentAudioTime,
-            getAudioDuration,
             setAudioDuration,
             playPauseAudioFinish
         } = this.props;
@@ -39,21 +37,26 @@ export default class Waveform extends Component {
 
         wave.load(MrSaxobeat);
         setNewWave(wave);
-        wave.on('finish', playPauseAudioFinish);
         wave.on('ready', setAudioDuration);
-
-        setInterval(() => {
-            getCurrentAudioTime();
-        }, 1000);
+        wave.on('finish', playPauseAudioFinish);
     }
 
     render() {
-        const { audioDuration, currentAudioTime } = this.props;
+        const { audioDuration, elapsedAudioTime } = this.props;
+        // Audio duration
+        const minutes = parseInt(audioDuration / 60);
+        let seconds = parseInt(audioDuration % 60);
+        seconds = seconds >= 10 ? seconds : `0${seconds}`;
+        // Current time
+        const currentMinutes = parseInt(elapsedAudioTime / 60);
+        let currentSeconds = parseInt(elapsedAudioTime % 60);
+        currentSeconds = currentSeconds >= 10 ? currentSeconds : `0${currentSeconds}`;
 
         return (
             <div className="waveform-container">
-                <p>{audioDuration}</p>
+                <p>{`${currentMinutes}:${currentSeconds}`}</p>
                 <div id="waveform"></div>
+                <p>{`${minutes}:${seconds}`}</p>
             </div>
         );
     }

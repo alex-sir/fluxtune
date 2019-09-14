@@ -10,11 +10,13 @@ export default class AudioControls extends Component {
             isPlaying,
             volume,
             isMuted,
+            getCurrentAudioTime,
             currentWave,
             setPlayPauseStatus,
             setAudioSource,
             setVolume,
             setAudioName,
+            setCurrentAudioTime,
             muteVolumeChange,
             playPauseAudio
         } = this.props;
@@ -29,7 +31,9 @@ export default class AudioControls extends Component {
                 />
                 <PlayPauseAudio
                     isPlaying={isPlaying}
+                    getCurrentAudioTime={getCurrentAudioTime}
                     setPlayPauseStatus={setPlayPauseStatus}
+                    setCurrentAudioTime={setCurrentAudioTime}
                     currentWave={currentWave}
                     playPauseAudio={playPauseAudio}
                 />
