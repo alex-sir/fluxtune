@@ -15,6 +15,7 @@ export default class PlayPauseAudio extends Component {
         playPauseAudio();
 
         // FIXME: Interacting w/ waveform when play/pause has never been pressed doesn't update elapsed time
+        // FIXME: Playing and pausing adds a new interval every time
         if (!isPlaying) {
             audioTime = setInterval(() => {
                 const currentTime = getCurrentAudioTime();

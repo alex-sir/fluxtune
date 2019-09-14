@@ -4,6 +4,10 @@
     font-size: 1.5em;
 }
 
+.range-label {
+    padding: 0 10px;
+}
+
 .audio-rate {
     padding: 10px;
 }
